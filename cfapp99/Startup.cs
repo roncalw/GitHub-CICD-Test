@@ -32,7 +32,7 @@ namespace cfapp99
             {
                 endpoints.MapGet("/", async context =>
                 {
-                    await context.Response.WriteAsync("Welcome to CodeFest ...checkout the POCs and Help Documents!");
+                    await context.Response.WriteAsync("Welcome to CodeFest ...checkout the POCs, Swagger and Help Documents!");
                 });
             });
         }
