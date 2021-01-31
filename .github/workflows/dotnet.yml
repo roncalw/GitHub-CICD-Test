@@ -27,13 +27,13 @@ jobs:
     - name: Upload WebApp1 Build Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: WebApp1
+        name: WebApp1_Build_${env:BUILD_NUMBER}
         path: D:\a\GitHub-CICD-Test\GitHub-CICD-Test\cfapp99\bin\Release\net5.0\win10-x64\publish\
 
 
     - uses: actions/download-artifact@v2
       with:
-        name: my-artifact
+        name: WebApp1_Build_${env:BUILD_NUMBER}
 
     - name: Display structure of downloaded files
       run: dir
