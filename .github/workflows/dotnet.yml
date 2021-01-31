@@ -30,14 +30,21 @@ jobs:
         name: WebApp1
         path: D:\a\GitHub-CICD-Test\GitHub-CICD-Test\cfapp99\bin\Release\net5.0\win10-x64\publish\
 
-
-    - uses: actions/download-artifact@v2
-      with:
-        name: WebApp1
-
-    - name: Display structure of downloaded files
-      run: dir
-
     - name: Do this
       run: echo "Build number is ${env:BUILD_NUMBER}"
       
+  deploy:
+    needs: build
+    runs-on: self-hosted
+ 
+    steps:
+    - name: Download new binaries over the top of the app
+      uses: actions/download-artifact@v2
+      with:
+        name: WebApp1
+        path: C:\Foo
+ 
+    - name: Display structure of downloaded files
+      run: dir
+ 
+ 
