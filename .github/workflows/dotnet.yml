@@ -31,6 +31,13 @@ jobs:
         path: D:\a\GitHub-CICD-Test\GitHub-CICD-Test\cfapp99\bin\Release\net5.0\win10-x64\publish\
 
 
+    - uses: actions/download-artifact@v2
+      with:
+        name: my-artifact
+
+    - name: Display structure of downloaded files
+      run: dir
+
     - name: Do this
       run: echo "Build number is ${env:BUILD_NUMBER}"
       
