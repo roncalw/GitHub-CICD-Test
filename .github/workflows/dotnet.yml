@@ -19,12 +19,9 @@ jobs:
       uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}
-
-    - name: Restore dependencies
-      run: dotnet restore
       
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: ddotnet publish --framework net5.0 --configuration Release --self-contained -r win10-x64
   
     - name: Publish
       run: dotnet publish
