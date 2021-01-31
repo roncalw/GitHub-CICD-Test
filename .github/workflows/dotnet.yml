@@ -44,10 +44,11 @@ jobs:
         name: WebApp1
         path: C:\Foo
  
+ 
     - name: Display structure of downloaded files
       run: |
         dir
-        rmdir c:\pub\cfapp99_bak1 /q /s
-        rmdir c:\pub\cfapp99_bak /q /s
+        Remove-Item 'c:\pub\cfapp99_bak1' -Recurse
+        Remove-Item 'c:\pub\cfapp99_bak' -Recurse
         ren c:\pub\cfapp99 cfapp99_bak
         md c:\pub\cfapp99
