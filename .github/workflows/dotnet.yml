@@ -9,8 +9,9 @@ on:
 jobs:
   build:
 
-    runs-on: self-hosted
-
+    # runs-on: self-hosted
+    runs-on: windows-latest
+    
     steps:
     - uses: actions/checkout@v2
       
@@ -23,7 +24,10 @@ jobs:
       run: dotnet restore
       
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration Release --no-restore
+  
+    - name: Publish
+      run: dotnet publish
 
     - name: Do this
       run: echo "Build number is ${env:BUILD_NUMBER}"
