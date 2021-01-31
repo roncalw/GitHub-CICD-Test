@@ -9,16 +9,22 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      
+    - name: Generate build number
+      uses: einaregilsson/build-number@v3
       with:
-        dotnet-version: 5.0.x
+        token: ${{secrets.github_token}}
+
     - name: Restore dependencies
       run: dotnet restore
+      
     - name: Build
       run: dotnet build --no-restore
 
+    - name: Do this
+      run: echo "Build number is ${env:BUILD_NUMBER}"
+      
