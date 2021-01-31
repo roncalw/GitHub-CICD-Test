@@ -45,6 +45,8 @@ jobs:
         path: C:\Foo
  
     - name: Display structure of downloaded files
-      run: dir
- 
- 
+      run: |
+        dir
+        if exist c:\pub\cfapp99_bak ren c:\pub\cfapp99_bak cfapp99_bak1  
+        ren c:\pub\cfapp99 cfapp99_bak
+        md c:\pub\cfapp99
