@@ -23,6 +23,14 @@ jobs:
     - name: Publish
       run: dotnet publish --framework net5.0 --configuration Release --self-contained -r win10-x64
 
+
+    - name: Upload WebApp1 Build Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: WebApp1
+        path: D:\a\GitHub-CICD-Test\GitHub-CICD-Test\cfapp99\bin\Release\net5.0\win10-x64\publish\
+
+
     - name: Do this
       run: echo "Build number is ${env:BUILD_NUMBER}"
       
