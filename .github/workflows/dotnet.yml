@@ -20,11 +20,8 @@ jobs:
       with:
         token: ${{secrets.github_token}}
       
-    - name: Build
-      run: ddotnet publish --framework net5.0 --configuration Release --self-contained -r win10-x64
-  
     - name: Publish
-      run: dotnet publish
+      run: dotnet publish --framework net5.0 --configuration Release --self-contained -r win10-x64
 
     - name: Do this
       run: echo "Build number is ${env:BUILD_NUMBER}"
