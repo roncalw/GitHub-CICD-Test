@@ -26,5 +26,5 @@ jobs:
       run: dotnet build --no-restore
 
     - name: Do this
-      run: echo "Build mumber is $(env:GITHUB_RUN_NUMBER)"
+      run: echo "Build number is ${env:BUILD_NUMBER}"
       
