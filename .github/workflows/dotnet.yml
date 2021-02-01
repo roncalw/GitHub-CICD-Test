@@ -33,22 +33,36 @@ jobs:
     - name: Do this
       run: echo "Build number is ${env:BUILD_NUMBER}"
       
-  deploy:
+  deploy_local:
     needs: build
     runs-on: self-hosted
  
     steps: 
     - name: Prepare local folders
       run: |
-        dir
         Remove-Item 'c:\pub\cfapp99_bak1' -Recurse -ErrorAction Ignore
         Remove-Item 'c:\pub\cfapp99_bak' -Recurse -ErrorAction Ignore
         ren c:\pub\cfapp99 cfapp99_bak
         md c:\pub\cfapp99
 
-    - name: Download new binaries to the app
+    - name: Download new binaries to the local app
       uses: actions/download-artifact@v2
       with:
         name: WebApp1
         path: c:\pub\cfapp99
+
+  deploy_remote:
+    needs: deploy_local
+    runs-on: self-hosted
  
+    steps: 
+    - name: Prepare remote folders
+      run: |
+        Remove-Item '\\WIN2019DC03\c$\pub\cfapp99_bak1' -Recurse -ErrorAction Ignore
+        Remove-Item '\\WIN2019DC03\c$\pub\cfapp99_bak' -Recurse -ErrorAction Ignore
+        ren \\WIN2019DC03\c$\pub\cfapp99 cfapp99_bak
+        md \\WIN2019DC03\c$\pub\cfapp99
+
+    - name: Copy from local folder to the production web app
+      run: ROBOCOPY 'c:\pub\cfapp99' '\\WIN2019DC03\c$\pub\cfapp99' /mir /nfl
+
