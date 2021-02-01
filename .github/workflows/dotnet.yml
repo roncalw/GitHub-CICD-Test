@@ -37,18 +37,18 @@ jobs:
     needs: build
     runs-on: self-hosted
  
-    steps:
-    - name: Download new binaries over the top of the app
-      uses: actions/download-artifact@v2
-      with:
-        name: WebApp1
-        path: C:\Foo
- 
- 
-    - name: Display structure of downloaded files
+    steps: 
+    - name: Prepare local folders
       run: |
         dir
         Remove-Item 'c:\pub\cfapp99_bak1' -Recurse -ErrorAction Ignore
         Remove-Item 'c:\pub\cfapp99_bak' -Recurse -ErrorAction Ignore
         ren c:\pub\cfapp99 cfapp99_bak
         md c:\pub\cfapp99
+
+    - name: Download new binaries to the app
+      uses: actions/download-artifact@v2
+      with:
+        name: WebApp1
+        path: c:\pub\cfapp99
+ 
