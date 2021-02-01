@@ -53,8 +53,10 @@ jobs:
 
   deploy_remote:
     needs: deploy_local
-    runs-on: self-hosted
- 
+    runs-on: self-hosted 
+    environment:
+      name: GitHub-CICD-Test.prod
+      
     steps: 
     - name: Prepare remote folders
       run: |
