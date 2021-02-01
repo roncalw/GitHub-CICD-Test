@@ -64,7 +64,6 @@ jobs:
         md \\WIN2019DC03\c$\pub\cfapp99
 
     - name: Copy from local folder to the production web app
-    - shell: sh
       run: |
-        ROBOCOPY "c:\pub\cfapp99" "\\WIN2019DC03\c$\pub\cfapp99" /mir /nfl
-        Dir
+        ROBOCOPY 'c:\pub\cfapp99' '\\WIN2019DC03\c$\pub\cfapp99'
+        dir
