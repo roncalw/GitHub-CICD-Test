@@ -65,5 +65,5 @@ jobs:
 
     - name: Copy from local folder to the production web app
       run: |
-        ROBOCOPY 'c:\pub\cfapp99' '\\WIN2019DC03\c$\pub\cfapp99'
+        Copy-Item -Path 'c:\pub\cfapp99\*' -Destination '\\WIN2019DC03\c$\pub\cfapp99' -Recurse
         dir
